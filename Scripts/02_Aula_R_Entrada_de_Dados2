@@ -1,0 +1,121 @@
+#####################################
+#   ##         AULA 2       ##
+#####################################
+
+###### ENTRADA DE  DADOS (continuacao) ###########
+
+# **  Importando dados  **
+# Para ler arquivo de dados em formato txt
+dados0 <- read.table(file.choose(), header = TRUE)
+dados0
+
+# Para ler arquivo de dados em formato csv
+dados <- read.csv(file.choose(), header = TRUE)
+dados
+
+# Para ler dados da internet
+dadnet <- read.table("http://www.math.smith.edu/sasr/testdata")
+dadnet
+
+dadnetcsv <-
+  read.csv("http://www.math.smith.edu/sasr/datasets/help.csv")
+
+
+# Para ver uma parte da base de dados, onde será 
+# apresentado o nome das variáveis com alguns valores
+head(dados)    #iniciais
+head(dadnetcsv)
+
+tail(dadnetcsv)    #finais
+
+# especificando quantas linhas deseja ver  #
+head(dados0, n=3)
+tail(dados0,n=4)
+
+
+# **  Dimensão da base de dados  **
+# número de linhas (observ) x número de colunas (variáveis)
+dim(dados) 
+
+
+# Agora vamos ter acesso a cada variável individualmente
+# Criando vetores com os valores das variáveis
+sexo <- dados$Sexo
+idade <- dados$Idade
+ginst <- dados$g_Instru
+lresid <- dados$l_Resid
+freqbib <- dados$Freq_bib
+renda <- dados$Renda
+anocad <- dados$Ano_cad
+
+sexo
+renda
+
+
+# **  Nomes de variáveis e tipos de variáveis  **
+
+# Apresenta a estrutura do objeto R  #
+str(dados)
+
+# Apresenta nome e tipo de variável em um "dataframe" #
+sapply(dados, class)
+
+
+#  * Valores de variáveis em uma série de dados
+dados??????
+
+print(dados)
+
+View(dados)
+
+
+
+#  Valores de variáveis para um subconjunto de dados #
+dados [, 2:3]           # especificando colunas em sequência 
+
+dados [, 2:5]
+
+dados[, c(2, 4, 8)]     # especificando colunas determinadas
+
+dados[1:10, ]           # especificando linhas em sequência
+
+dados[1:10, c(2, 4, 8)] # especificando linhas e colunas
+
+
+#   **  Criação de Subconjunto de Dados ** 
+#  Criando um conjunto de dados com os dados do sexo masculino
+dadM1 <- dados[dados$Sexo == 1, ]
+dadM1
+
+dadM2<- dados[dados$Sexo==1, c(3,7)]
+
+dadM2
+
+dadM1a <- dados[Sexo == 1, ]
+
+
+
+# Valores de variáveis em um subconjunto de dados usando o comando subset
+dadM <- subset(dados, Sexo == 1)
+dadM
+
+renda3 <- subset(dadM1, Renda > 2 & Renda < 5)
+renda3
+
+renda2 <- subset(renda3, Renda < 3.5, 3:7)
+renda2
+
+
+# **  Renomeando variáveis  **
+names(dados)[names(dados)== "Sexo"]<- "genero"
+dados
+
+
+# Usando o comando "fix" para renomear e classificar variáveis - a variável g_Instru foi alterada para ginstru
+fix(dados)
+
+str(dados)
+head(dados)
+
+novainstru <- dados$ginstru
+?????????names(dados)[names(dados) == "Sexo"] <- "genero"
