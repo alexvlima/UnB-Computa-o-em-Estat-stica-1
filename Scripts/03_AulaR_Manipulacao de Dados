@@ -1,0 +1,150 @@
+#####################################
+#   ##         AULA 3       ##
+#####################################
+
+
+###### MANIPULAÇÃO DE  DADOS  ###############
+
+########################################### #
+# Importando os dados 
+# dados <- read.csv(file.choose(), header = TRUE)
+dados
+
+
+# Criando vetores com os valores das variáveis
+sexo <- dados$Sexo
+idade <- dados$Idade
+ginst <- dados$g_Instru
+lresid <- dados$l_Resid
+freqbib <- dados$Freq_bib
+renda <- dados$Renda
+anocad <- dados$Ano_cad
+
+sexo
+
+# OBS:  Criação de um vetor sexo como um fator com os dados
+#       da coluna (variável) sexo.        
+sexo1 <- factor(dados$Sexo) 
+
+
+# #### Verificando o tipo da variável ####  
+
+# Verificando se é caracter
+is.character(sexo)
+is.character(sexo1)
+
+# Verificando se é fator
+is.factor(sexo)
+is.factor(sexo1)
+
+# Verificando se é numérico
+is.numeric(idade)
+is.numeric(sexo)
+is.numeric(sexo1)
+
+
+# ## Convertendo o tipo de variável
+
+# as.numeric - converte para número
+# as.character - converte para texto
+# as.factor - converte para fator, existem níveis de fator
+
+sexo2 <- as.character(sexo)
+is.character(sexo2)
+is.factor(sexo2)
+
+# A função length informa o tamanho da variável 
+# (número de observações)
+length(idade)
+length(sexo)
+
+
+# A função nchar informa o número de caracteres dos valores da variável 
+# (número de posições)
+nchar(idade)
+nchar(anocad)
+
+anocad <- as.character(anocad)
+nchar(anocad)
+
+
+# A função substr extrai informação de uma string
+newanocad <- substr(anocad, 3, 4)
+newanocad
+
+newanocad1 <- substr(anocad, 2, 3)
+newanocad1
+
+
+# deseja-se ler as duas últimas posições, 
+# mas não se sabe o total de posições
+newanocad2 <- substr(anocad, nchar(anocad) - 1, nchar(anocad))
+newanocad2
+
+
+# A função paste é usada para concatenar strings
+
+paste("X","Total")
+nome<-paste("X","Total")
+nome
+
+paste("X",1)
+
+paste("X", 1:5)
+
+paste("X", 1:5, sep = "   ") 
+
+paste('X', 'Total', sep='')
+
+paste(anocad, "00")
+
+paste(anocad, "00", sep = "")
+
+
+
+paste("Today is", date())
+# OBS: função date() identifica a data atual
+
+
+# Funções tolower() e toupper()  
+
+# A função tolower() converte o texto para minúsculo
+tolower("COMPUTAÇÃO EM ESTATÍSTICA")
+tolower("Computação Em Estatística")
+
+
+# A função toupper converte o texto para maiúsculo
+toupper("abcdefg")
+toupper("Computação Em Estatística")
+
+
+##  Retirar brancos 
+txt = "   R 3.0.3    "
+
+txt1 <- sub("^ +", "", txt)
+txt1
+
+
+txt2 <- sub(" +$", "", txt)
+txt2
+
+
+txt3 <- sub(" +$", "", sub("^ +", "", txt))
+txt3
+
+
+
+# Classificando as variáveis com fator e atribuindo nome aos níveis
+
+sexo4<- factor(sexo, label = c("Masculino", "Feminino"), level = 1:2)
+sexo4
+
+grau <- factor(dados$g_Instru, label = c("ensino funadamental incompleto", "ensino fundamental completo", 
+                                         "ensino médio"), level = 1:3)
+grau
+residi <- factor(lresid, label = c("comunidade", "vizinhança da comunidade", 
+                                   "outra localidade"), level = 1:3)
+
+anocad <- factor(anocad)
+
+
