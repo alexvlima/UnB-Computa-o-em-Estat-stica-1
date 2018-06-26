@@ -1,0 +1,159 @@
+
+###################################
+#   ##         AULA 6       ##
+#####################################
+
+
+######   CRIANDO TABELAS e GRÁFICOS (continuação) ###### #
+
+######################################################## #
+dados <- read.csv(file.choose(), header = TRUE)
+head(dados)
+
+
+# Preparando os Dados 
+sexo <- factor(dados$Sexo, label = c("Masculino", "Feminino"), level = 1:2)
+idade <- dados$Idade
+grau <- factor(dados$g_Instru, label = c("ensino fundamental incompleto", 
+                                         "ensino fundamental completo", "ensino médio"), level = 1:3) 
+residi <- factor(dados$l_Resid, label = c("comunidade",
+                                          "vizinhança da comunidade",  "outra localidade"), level = 1:3)           
+freqbib <- dados$Freq_bib
+renda <- dados$Renda
+anocad <- factor(dados$Ano_cad)
+
+
+#  ###  VARIÁVEIS QUANTITATIVAS   ### 
+
+#  ###  Construção de Tabelas   ###
+
+# ** Variáveis Quantitativas Discretas  **
+
+tabfreqbib <- table(freqbib)
+tabfreqbib
+
+
+# **  Ramos e Folhas  **
+stem(freqbib)
+
+# ** Gráfico de Haste
+plot(tabfreqbib, xlab = "Número de vezes que vai a biblioteca por semana", 
+     ylab = "Usuários da biblioteca")
+
+
+
+
+
+# ** Variáveis Quantitativas Contínuas  **
+
+# **  Ramos e Folhas  **
+stem(idade)
+stem(renda)
+
+
+
+#  **  Histograma  ** 
+hist(renda, xlab = "Renda em salários mínimos", 
+     ylab = "frequência de usuários da biblioteca", 
+     main = " ", ylim = c(0, 12))
+
+
+# Colocando título
+hist(renda, xlab = "Renda em salários mínimos",
+     ylab = "frequência de usuários da biblioteca", 
+     main = "Histograma da variável Renda", ylim = c(0, 12))
+
+
+# Especificando o número de classes
+hist(renda, xlab = "Renda em salários mínimos", 
+     ylab = "frequência de usuários da biblioteca", 
+     main = " ", ylim = c(0, 20), breaks = 4)
+
+
+
+
+#  **  Boxplot  ** 
+boxplot(renda)
+
+
+# Separando por sexo
+boxplot(renda ~ sexo)
+boxplot(renda ~ factor(dados$g_Instru))
+
+
+# Fazendo na horizontal
+boxplot(renda ~ residi, horizontal = TRUE)
+
+
+
+
+
+
+
+
+
+
+#  #######  MEDIDAS DESCRITIVAS  #######
+
+#  *** Mínimo e Máximo
+min(renda)
+max(renda)
+
+
+#  * Somando os valores
+sum(renda)
+
+# * Número de observações
+n = length(renda)
+n
+
+#  * Calculando a média
+media = sum(renda)/n
+media
+
+# Média
+mean(renda)
+
+# Calculando a variância
+renda2 = renda^2
+renda2
+
+varr = (sum(renda2) - n * (media^2))/(n - 1)
+varr
+
+
+# Variância
+var(renda)
+
+# Calculando o desvio padrão
+dp = sqrt(varr)
+dp
+
+# Desvio Padrão
+sd(renda)
+
+# Calculando o coeficiente de variação
+coefvar = sd(renda)/mean(renda)
+coefvar
+
+
+# Quantis
+
+quantile(renda)  ## defaul 7
+ 
+# Especificando  ordem do quantil
+quantile(renda, probs = seq(0, 1, 0.1))
+quantile(renda, probs = 0.95)
+quantile(renda, type = 3)  ##SAS
+
+qq = quantile(renda, type = 5)  #funçao distribuição acumulada empírica
+
+
+
+# Amplitude Interquartílica
+dq = qq[4] - qq[2]
+dq
+# Função resumo
+summary(renda)
+
+
