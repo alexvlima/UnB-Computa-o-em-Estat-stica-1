@@ -1,0 +1,61 @@
+##### RECODIFICAR UMA VARIÁVEL - SUBSTITUINDO VALORES NA MESMA VARIÁVEL ###
+
+dados <- read.csv(file.choose(), header = TRUE) # lendo arquivo csv problema1
+
+dados$Sexo<-5       #substituindo todos os valores de um campo 
+                    # por um número
+dados$Sexo<-"Cinco" #substituindo todos os valores de um campo 
+                    # por uma sequência de caracteres
+
+dados <- read.csv(file.choose(), header = TRUE) # lendo novamente arquivo csv problema1
+
+# utilizando critérios para alterar valores de um campo
+
+dados$Sexo[dados$Sexo == 1]<- "M"
+dados$Sexo[dados$Sexo == 2]<- "F"
+
+dados$g_Instru[dados$g_Instru<=2]<-1
+dados$g_Instru[dados$g_Instru>2]<-2
+
+dados$l_Resid[dados$l_Resid==3]<-1
+
+
+##### RECODIFICAR UMA VARIÁVEL - CRIANDO UMA NOVA VARIÁVEL ###
+
+dados <- read.csv(file.choose(), header = TRUE) # lendo novamente arquivo csv problema1
+
+#criando uma nova variável Sexo_cat
+dados$Sexo_cat<-NA
+dados$Sexo_cat[dados$Sexo == 1]<- "M"
+dados$Sexo_cat[dados$Sexo == 2]<- "F"
+
+#criando uma nova variável Renda_cat
+dados$Renda_cat<-NA
+dados$Renda_cat[dados$Renda<2]<-1
+dados$Renda_cat[dados$Renda>=2 & dados$Renda<3]<-2
+dados$Renda_cat[dados$Renda>=3]<-3
+
+
+Renda_cat<-dados$Renda_cat
+Renda_cat<-factor(Renda_cat, c(1,2,3))
+levels(Renda_cat)<-c("<2", "2 |- 3", ">=3" )
+
+
+######   AGRUPANDO DADOS QUANTITATIVOS - INTERVALOS DE CLASSE ####### #
+#####   CRIANDO UMA NOVA VARIÁVEL ##################
+############################################################## #
+
+dados$catrenda<-NA
+dados$catrenda <- cut(dados$Renda, breaks=c(0,1.5, 2.0, 4.0, 5.5,6.6), 
+                labels=c("1", "2","3", "4", "5"),
+                right=FALSE)
+dados$catrenda
+levels(dados$catrenda)=c("<1.5", "1.5 |- 2.0","2.0 |- 4.0", "4.0 |- 5.5", ">=5.5")
+
+dados$catrenda1<-NA
+dados$catrenda1 <- cut(dados$Renda, breaks=c(0,1.5, 2.0, 4.0, 5.5,6.6), 
+              labels=c("<1.5", "1.5 |- 2.0","2.0 |- 4.0", "4.0 |- 5.5", ">=5.5"),
+                right=FALSE)
+
+
+##### DICA: ALTERNATIVA - USAR O COMANDO RECODE - PACKAGE car #####
