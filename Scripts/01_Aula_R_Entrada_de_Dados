@@ -1,0 +1,116 @@
+#####################################
+#   ##         AULA 1       ##
+#####################################
+
+###### ENTRADA DE  DADOS  ###########
+
+#   **   VETOR   ** 
+#   Coleção de elementos, todos do mesmo tipo
+
+# Elementos Numéricos
+vetor1 <- c(1, 2, 3, 4, 5)
+vetor1
+
+# Elementos do tipo caracater
+vetor2 <- c("Maria", "Ana", "Paulo", "Ricardo", "Denise")
+vetor2
+#ou
+vetor2a <- c('Maria', 'Ana', 'Paulo', 'Ricardo', 'Denise') 
+vetor2a
+
+# outro exemplo
+vetor3 <-c("Feminino", "Masculino")
+vetor3
+
+#  ## Fator  ##
+vetor3a <-factor (c(0, 1))
+vetor3a
+levels(vetor3a) <-c("Feminino", "Masculino")
+vetor3a
+
+# outra alternativa ...
+vetor3b <- c(0, 1)
+vetor3b
+vetor3b <- factor(vetor3b, levels = 0:1)
+vetor3b
+levels(vetor3b) <- c("Feminino", "Masculino")
+vetor3b
+#
+
+
+# Elementos Lógicos
+vetor4 <- c(1 > 2, 4.2 < 4.199, 2.5 < 5)
+vetor4
+
+
+# Entrando com os dados: 
+#  idade de pessoas do sexo Feminino(xF) e do sexo Masculino (xM)
+
+xF <- c(17, 16, 21, 24, 15)
+xM <- c(19, 22, 16, 23, 22)
+
+#   **   MATRIZ   ** 
+#  Matriz de dados - matrix(elemento, nrow=5, ncol=2, byrow=FALSE)
+idsexo <- matrix(0, 5, 2)
+idsexo
+
+
+idade <- c(xF, xM)
+idade
+
+idsexo <- matrix(idade, 5, 2)
+idsexo
+
+
+#   **   LISTA   ** 
+# Lista - podemos combinar diferentes objetos e cada objeto pode
+# ter tamanho diferente
+lista1 <- list()
+lista1
+
+lista1$valores <- idsexo
+lista1
+lista1$nomes <- vetor2
+lista1
+
+
+# Identificando o tipo de dado e objeto
+class(lista1)
+class(lista1$valores)
+class(lista1$nomes)
+class(vetor1)
+class(vetor2)
+class(vetor4)
+
+
+#   **   DATA FRAME   ** 
+# Data frame - podemos combinar diferentes objetos, 
+# mas todos objetos de mesmo tamanho
+x <- data.frame(xF, xM)
+x
+
+mistura <- data.frame(xF, xM, vetor2)
+mistura
+mistura$xF
+mistura$vetor2
+
+
+# ou
+y <- data.frame()
+y
+
+fix(y)
+y
+y$var1
+
+
+#  ** Importando dados **
+# Para ler arquivo de dados em formato txt
+dados <- read.table(file.choose(), header = TRUE)
+dados
+
+
+# Para ler arquivo de dados em formato csv
+dados1 <- read.csv(file.choose(), header = TRUE)
+dados1
+
