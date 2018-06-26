@@ -1,0 +1,144 @@
+#####################################
+#   ##         AULA 4       ##
+#####################################
+
+
+###### MANIPULAÇÃO DE  DADOS (continuação) ############# #
+
+######################################################## #
+# Importando os dados 
+dados <- read.csv(file.choose(), header = TRUE)
+head(dados)
+
+
+# EXERCÍCIO 1
+# Crie um arquivo chamado data1 com as informações sobre 
+# sexo e idade, além do código de identificação do usuário
+# (colunas 1 a 3)
+
+data1 <- dados[, 1:3]
+data1
+
+
+
+# EXERCÍCIO 2
+# Crie um arquivo chamado data2 com as informações sobre 
+# grau de instrução, local de residência e renda, além do
+# código de identificação do usuário 
+
+data2 <- dados[, c(1, 4, 5, 7)]
+data2
+
+
+
+# EXERCÍCIO 3
+# Crie um arquivo chamado data3 com as informações dos usuários  
+# do sexo masculino e um arquivo chamado data4 com as informações
+# das usuárias do sexo feminino
+
+
+data3 <- dados[dados$Sexo == 1, ]
+data4 <- dados[dados$Sexo == 2, ]
+data3
+data4
+
+
+
+
+
+#  ###  Concatenando Arquivos: cbind  e  rbind
+
+novo <- cbind(data1, data2)   # por coluna
+novo
+
+novo1 <- rbind(data3, data4)   # por linha
+novo1
+
+
+#  ###  Ordenando Arquivos: order
+
+dadorde = dados[order(dados$Sexo, dados$Idade), ]
+dadorde
+
+
+#  ###  Ordenando vetores: sort
+
+renda<- dadorde$Renda
+renda 
+
+newrenda = sort(renda)
+newrenda
+
+
+#  ###  Merge     
+
+aa = merge(data1, data2, by = "Ind")
+aa
+
+gratificacao = c(200, 300, 500)
+g_Instru = c(1, 2, 3)
+
+data5 = cbind(g_Instru, gratificacao)
+data5
+
+bb = merge(dados, data5, by = "g_Instru")
+bb
+
+
+
+
+#   ######## FUNÇÕES MATEMÁTICAS     #######
+# #######################################
+
+xx = c(-1, 2, 3, -5, -3)
+
+abs(xx)                      # valor absoluto
+abs(-325.2)
+
+sqrt(xx)                     # raiz quadrada
+
+xx^3                          # potência (x ao cubo)
+
+exp(2)                       # exponencial
+exp(renda)
+
+log(renda)                  # logaritmo natural
+log10(renda)                # logaritmo base 10
+log2(renda)                 # logaritmo base 2
+# ou
+log(renda, base = 2)        # logaritmo base 2
+log(renda, base = 8)
+
+
+yy = c(1, 2, 3, 4, 5)
+
+xx^yy                       # potenciação
+
+xx * yy                     # produto
+
+
+# Funções Trigonométricas
+
+sin(0)                 # seno
+sin(c(0, pi/2, pi))
+
+cos(0)                 # cosseno
+cos(c(0, pi/2, pi)) 
+
+tan(c(0, pi/2, pi))    # tangente
+
+
+factorial(4)           # fatorial
+
+choose(4, 2)          # binomio de Newton
+choose(10, 4)
+
+
+# Cálculo de Derivada
+
+D(expression(x^2), "x")
+D(expression(x^2 + 2 * y), "x")
+D(expression(x^2 + 2 * y), "y")
+D(expression(x^2 + 3 * x^4), "x")
+D(expression(log(x)), "x")
+D(expression(log(x^2)), "x")
